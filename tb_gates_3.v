@@ -14,6 +14,7 @@ module TB_AND3;
 	localparam CONSTANT_INPUTS = 3;
 	
 	// integer for counting
+	integer counter = 0;
 	
 	// inputs and test inputs
 	reg i1, i2, i3; // inputs
@@ -36,7 +37,6 @@ module TB_AND3;
 	
 	// Procedure statement
 	initial begin
-		integer counter = 0;
 		for (counter = 0; counter < (2**(CONSTANT_INPUTS)); counter = counter + 1) begin
 			apply_test(test_i);
 			test_i = test_i + 1'b1;
