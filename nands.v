@@ -83,11 +83,11 @@ module NAND5_C(
 );
 	wire i1_n, i2_n, i3_n, i4_n, i5_n; // negation of inputs
 	
-	NOT1 N1 (.i1(i1), .o(i1_n));
-	NOT1 N2 (.i1(i2), .o(i2_n));
-	NOT1 N3 (.i1(i3), .o(i3_n));
-	NOT1 N4 (.i1(i4), .o(i4_n));
-	NOT1 N5 (.i1(i5), .o(i5_n));
+	NOT1 N1 (.i1(i1), .o(i1_n)); // negation of i1
+	NOT1 N2 (.i1(i2), .o(i2_n)); // negation of i2
+	NOT1 N3 (.i1(i3), .o(i3_n)); // negation of i3
+	NOT1 N4 (.i1(i4), .o(i4_n)); // negation of i4
+	NOT1 N5 (.i1(i5), .o(i5_n)); // negation of i5
 
 	OR5 O1 (.i1(i1_n), .i2(i2_n), .i3(i3_n), .i4(i4_n), .i5(i5_n), .o(o));
 
