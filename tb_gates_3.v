@@ -41,7 +41,7 @@ module TB_AND3;
 			apply_test(test_i);
 			test_i = test_i + 1'b1;
 		end
-		$wait;
+		#100;
 	end
 	
 endmodule
@@ -81,7 +81,7 @@ module TB_OR3;
 			apply_test(test_i);
 			test_i = test_i + 1'b1;
 		end
-		$wait;
+		#100;
 	end
 	
 endmodule

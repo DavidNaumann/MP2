@@ -8,7 +8,7 @@
 
 module TB_AND2;
 	
-	reg i1, i2; // input 1
+	reg i1, i2; // inputs
 	wire o; // output
 	
 	task apply_test (input test_i1, input test_i2);
@@ -28,7 +28,7 @@ module TB_AND2;
 		apply_test (0, 1);
 		apply_test (1, 0);
 		apply_test (1, 1);
-		$wait;
+		#100;
 	end
 	
 endmodule
@@ -55,7 +55,7 @@ module TB_OR2;
 		apply_test (0, 1);
 		apply_test (1, 0);
 		apply_test (1, 1);
-		$wait;
+		#100;
 	end
 	
 endmodule
