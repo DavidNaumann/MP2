@@ -53,7 +53,7 @@ module TB_OR3;
 	// Constant for inputs
 	localparam CONSTANT_INPUTS = 3;
 	
-	// integers for counting
+	// integer for counting
 	integer counter = 0;
 	
 	// inputs and test inputs
