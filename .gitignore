@@ -1,0 +1,12 @@
+
+gates_2.v.bak
+modelsim.ini
+MP2.cr.mti
+MP2.mpf
+vsim.wlf
+*.dat
+*.dbs
+*.vhd
+*.psm
+work/_info
+work
