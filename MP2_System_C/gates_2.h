@@ -30,7 +30,7 @@ SC_MODULE(or2)          // declare and2 sc_module
 
 	void do_or2()         // a C++ function
 	{
-		F.write((i[0].read() && i[1].read()));
+		F.write((i[0].read() || i[1].read()));
 	}
 
 	SC_CTOR(or2)          // constructor for and2
