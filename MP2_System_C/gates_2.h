@@ -23,7 +23,7 @@ SC_MODULE(and2)          // declare and2 sc_module
 
 // OR Gates
 
-SC_MODULE(or2)          // declare and2 sc_module
+SC_MODULE(or2)          // declare or2 sc_module
 {
 	sc_in<bool> i[2];       // input signal ports
 	sc_out<bool> F;         // output signal ports
@@ -35,7 +35,7 @@ SC_MODULE(or2)          // declare and2 sc_module
 
 	SC_CTOR(or2)          // constructor for and2
 	{
-		SC_METHOD(do_or2);  // register do_and2 with kernel
+		SC_METHOD(do_or2);  // register do_or2 with kernel
 		sensitive << i[0] << i[1];  // sensitivity list
 	}
 };
