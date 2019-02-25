@@ -16,7 +16,7 @@ SC_MODULE(and5)          // declare and5 sc_module
 
 	SC_CTOR(and5)          // constructor for and5
 	{
-		SC_METHOD(do_and5);  // register do_and2 with kernel
+		SC_METHOD(do_and5);  // register do_and5 with kernel
 		sensitive << i[0] << i[1] << i[2] << i[3] << i[4];  // sensitivity list
 	}
 };
@@ -33,9 +33,9 @@ SC_MODULE(or5)          // declare or5 sc_module
 		F.write((i[0].read() || i[1].read() || i[2].read() || i[3].read() || i[4].read()));
 	}
 
-	SC_CTOR(or5)          // constructor for and2
+	SC_CTOR(or5)          // constructor for or5
 	{
-		SC_METHOD(do_or5);  // register do_and2 with kernel
+		SC_METHOD(do_or5);  // register do_or5 with kernel
 		sensitive << i[0] << i[1] << i[2] << i[3] << i[4];  // sensitivity list
 	}
 };
