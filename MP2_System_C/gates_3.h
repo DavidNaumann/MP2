@@ -2,40 +2,116 @@
 
 #include "systemc.h"
 
-// AND Gates
+/*
+________________________________________________________________________________
 
-SC_MODULE(and3)          // declare and3 sc_module
+							AND Gate of 3 Inputs Model
+________________________________________________________________________________
+*/
+
+SC_MODULE(and3)          // Declare and3 sc_module
 {
-	sc_in<bool> i[3];       // input signal ports
-	sc_out<bool> F;         // output signal ports
+	sc_in<bool> i[3];       // Input signal ports
+	sc_out<bool> F;         // Output signal ports
 
-	void do_and3()         // a C++ function
+	void do_and3()         // C++ function for AND3 gate
 	{
 		F.write((i[0].read() && i[1].read() && i[2].read()));
 	}
 
-	SC_CTOR(and3)          // constructor for and3
+	SC_CTOR(and3)          // Constructor for and3
 	{
-		SC_METHOD(do_and3);  // register do_and3 with kernel
-		sensitive << i[0] << i[1] << i[2];  // sensitivity list
+		SC_METHOD(do_and3);  // Register do_and3 with kernel
+		sensitive << i[0] << i[1] << i[2];  // Sensitivity list
 	}
 };
 
-// OR Gates
+/*
+________________________________________________________________________________
 
-SC_MODULE(or3)          // declare or3 sc_module
+							OR Gate of 3 Inputs Models
+________________________________________________________________________________
+*/
+
+SC_MODULE(or3)          // Declare or3 sc_module
 {
-	sc_in<bool> i[3];       // input signal ports
-	sc_out<bool> F;         // output signal ports
+	sc_in<bool> i[3];       // Input signal ports
+	sc_out<bool> F;         // Output signal ports
 
-	void do_or3()         // a C++ function
+	void do_or3()         // C++ function for OR3 gate
 	{
 		F.write((i[0].read() || i[1].read() || i[2].read()));
 	}
 
-	SC_CTOR(or3)          // constructor for or3
+	SC_CTOR(or3)          // Constructor for or3
 	{
-		SC_METHOD(do_or3);  // register do_or3 with kernel
-		sensitive << i[0] << i[1] << i[2];  // sensitivity list
+		SC_METHOD(do_or3);  // Register do_or3 with kernel
+		sensitive << i[0] << i[1] << i[2];  // Sensitivity list
+	}
+};
+
+SC_MODULE(or3_c)          // Declare or3_c sc_module
+{
+	sc_in<bool> i[3];       // Input signal ports
+	sc_out<bool> F;         // Output signal ports
+
+	sc_signal<bool> n_i1, n_i2, n_i3; // Negated input variables
+	sc_signal<bool> S; // Temporary output variable
+
+	not1 n1;
+	and3 a1;
+
+	SC_CTOR(or3_c) : n1("N1"), a1("A1")        // Constructor for or3_c
+	{
+		// Negations
+
+		n1.i[0](i[0]);
+		n1.F(n_i1);
+
+		n1.i[0](i[1]);
+		n1.F(n_i2);
+
+		n1.i[0](i[2]);
+		n1.F(n_i3);
+
+		// Creates AND of negated inputs
+
+		a1.i[0](n_i1);
+		a1.i[1](n_i2);
+		a1.i[2](n_i3);
+		a1.F(S);
+
+		// Negates AND to create OR gate of inputs
+
+		n1.i[0](S);
+		n1.F(F);
+
+
+		sensitive << i[0] << i[1] << i[2];  // Sensitivity list
+	}
+};
+
+SC_MODULE(or3_sc)          // Declare or3_sc sc_module
+{
+	sc_in<bool> i[3];       // Input signal ports
+	sc_out<bool> F;         // Output signal ports
+
+	sc_signal<bool> S; // Temporary output of OR function
+	
+	// Gates needed for OR3 Gate
+	
+	or2 o1;
+
+	SC_CTOR(or3_sc) : o1("O1")       // Constructor for or3_sc
+	{
+		o1.i[0](i[0]);
+		o1.i[1](i[1]);
+		o1.F(S);
+
+		o1.i[0](i[2]);
+		o1.i[1](S);
+		o1.F(F);
+
+		sensitive << i[0] << i[1] << i[2];  // Sensitivity list
 	}
 };

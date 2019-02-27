@@ -2,55 +2,60 @@
 
 #include "systemc.h"
 
-// NAND Gates Equation Models
+/*
+________________________________________________________________________________
 
-SC_MODULE(nand2_e)          // declare nand2_e sc_module
+							NAND Equation Models
+________________________________________________________________________________
+*/
+
+SC_MODULE(nand2)          // Declare nand2 sc_module
 {
-	sc_in<bool> i[2];       // input signal ports
-	sc_out<bool> F;         // output signal ports
+	sc_in<bool> i[2];       // Input signal ports
+	sc_out<bool> F;         // Output signal ports
 
-	void do_nand2_e()         // a C++ function
+	void do_nand2()         // C++ function for NAND2 gate
 	{
 		F.write(!(i[0].read() && i[1].read()));
 	}
 
-	SC_CTOR(nand2_e)          // constructor for and2
+	SC_CTOR(nand2)          // Constructor for nand2
 	{
-		SC_METHOD(do_nand2_e);  // register do_and2 with kernel
-		sensitive << i[0] << i[1];  // sensitivity list
+		SC_METHOD(do_nand2);  // Register do_nand2 with kernel
+		sensitive << i[0] << i[1];  // Sensitivity list
 	}
 };
 
-SC_MODULE(nand3_e)          // declare nand3_e sc_module
+SC_MODULE(nand3)          // Declare nand3 sc_module
 {
 	sc_in<bool> i[3];       // input signal ports
 	sc_out<bool> F;         // output signal ports
 
-	void do_nand3_e()         // a C++ function
+	void do_nand3()         // C++ function for NAND3 Gate
 	{
 		F.write(!(i[0].read() && i[1].read() && i[2].read()));
 	}
 
-	SC_CTOR(nand3_e)          // constructor for nand3_e
+	SC_CTOR(nand3)          // constructor for nand3
 	{
-		SC_METHOD(do_nand3_e);  // register do_nand3_e with kernel
+		SC_METHOD(do_nand3);  // register do_nand3 with kernel
 		sensitive << i[0] << i[1] << i[2];  // sensitivity list
 	}
 };
 
-SC_MODULE(nand5_e)          // declare nand5_e sc_module
+SC_MODULE(nand5)          // Declare nand5 sc_module
 {
-	sc_in<bool> i[5];       // input signal ports
-	sc_out<bool> F;         // output signal ports
+	sc_in<bool> i[5];       // Input signal ports
+	sc_out<bool> F;         // Output signal ports
 
-	void do_nand5_e()         // a C++ function
+	void do_nand5()         // C++ function for NAND5 Gate
 	{
 		F.write(!(i[0].read() && i[1].read() && i[2].read() && i[3].read() && i[4].read()));
 	}
 
-	SC_CTOR(nand5_e)          // constructor for nand5_e
+	SC_CTOR(nand5)          // constructor for nand5
 	{
-		SC_METHOD(do_nand5_e);  // register do_nand5_e with kernel
+		SC_METHOD(do_nand5);  // register do_nand5 with kernel
 		sensitive << i[0] << i[1] << i[2] << i[3] << i[4];  // sensitivity list
 	}
 };
@@ -58,21 +63,23 @@ SC_MODULE(nand5_e)          // declare nand5_e sc_module
 /*
 ________________________________________________________________________________
 
-NAND Component Models
+							NAND Component Models
 ________________________________________________________________________________
 */
 
-SC_MODULE(nand2_c)          // declare nand2_c sc_module
+SC_MODULE(nand2_c)          // Declare nand2_c sc_module
 {
-	sc_in<bool> i[2];       // input signal ports
-	sc_out<bool> F;         // output signal ports
+	sc_in<bool> i[2];       // Input signal ports
+	sc_out<bool> F;         // Output signal ports
 
 	sc_signal<bool> S;
+
+	// Gates for NAND2 in minimal SOP form
 
 	and2 a1;
 	not1 n1;
 
-	SC_CTOR(nand2_c): a1("A1"), n1("N1")          // constructor for nand2_c
+	SC_CTOR(nand2_c): a1("A1"), n1("N1")          // Constructor for nand2_c
 	{
 		a1.i[0](i[0]);
 		a1.i[1](i[1]);
@@ -81,21 +88,23 @@ SC_MODULE(nand2_c)          // declare nand2_c sc_module
 		n1.i[0](S);
 		n1.F(F);
 
-		sensitive << i[0] << i[1];  // sensitivity list
+		sensitive << i[0] << i[1];  // Sensitivity list
 	}
 };
 
-SC_MODULE(nand3_c)          // declare nand3_c sc_module
+SC_MODULE(nand3_c)          // Declare nand3_c sc_module
 {
 	sc_in<bool> i[3];       // input signal ports
-	sc_out<bool> F;         // output signal ports
+	sc_out<bool> F;         // Output signal ports
 
 	sc_signal<bool> S;
+
+	// Gates for NAND3 in minimal SOP form
 
 	and3 a1;
 	not1 n1;
 
-	SC_CTOR(nand3_c) : a1("A1"), n1("N1")          // constructor for nand3_c
+	SC_CTOR(nand3_c) : a1("A1"), n1("N1")          // Constructor for nand3_c
 	{
 		a1.i[0](i[0]);
 		a1.i[1](i[1]);
@@ -105,21 +114,23 @@ SC_MODULE(nand3_c)          // declare nand3_c sc_module
 		n1.i[0](S);
 		n1.F(F);
 
-		sensitive << i[0] << i[1] << i[2];  // sensitivity list
+		sensitive << i[0] << i[1] << i[2];  // Sensitivity list
 	}
 };
 
-SC_MODULE(nand5_c)          // declare nand3_c sc_module
+SC_MODULE(nand5_c)          // Declare nand5_c sc_module
 {
-	sc_in<bool> i[5];       // input signal ports
-	sc_out<bool> F;         // output signal ports
+	sc_in<bool> i[5];       // Input signal ports
+	sc_out<bool> F;         // Output signal ports
 
 	sc_signal<bool> S;
+
+	// Gates for NAND5 in minimal SOP form
 
 	and5 a1;
 	not1 n1;
 
-	SC_CTOR(nand5_c) : a1("A1"), n1("N1")          // constructor for nand3_c
+	SC_CTOR(nand5_c) : a1("A1"), n1("N1")          // constructor for nand5_c
 	{
 		a1.i[0](i[0]);
 		a1.i[1](i[1]);
@@ -131,6 +142,101 @@ SC_MODULE(nand5_c)          // declare nand3_c sc_module
 		n1.i[0](S);
 		n1.F(F);
 
-		sensitive << i[0] << i[1] << i[2] << i[3] << i[4];  // sensitivity list
+		sensitive << i[0] << i[1] << i[2] << i[3] << i[4];  // Sensitivity list
 	}
 };
+
+/*
+________________________________________________________________________________
+
+						NAND Self Component Models
+________________________________________________________________________________
+*/
+
+SC_MODULE(nand2_sc)          // Declare nand2_sc sc_module
+{
+	sc_in<bool> i[2];       // Input signal ports
+	sc_out<bool> F;         // Output signal ports
+
+	// Gate for NAND2 in self component form
+	
+	nand2 na1;
+
+	SC_CTOR(nand2_sc) : na1("NA1")          // Constructor for nand2_sc
+	{
+		na1.i[0](i[0]);
+		na1.i[1](i[1]);
+		na1.F(F);
+
+		sensitive << i[0] << i[1];  // Sensitivity list
+	}
+};
+
+SC_MODULE(nand3_sc)          // Declare nand3_sc sc_module
+{
+	sc_in<bool> i[3];       // Input signal ports
+	sc_out<bool> F;         // Output signal ports
+
+	sc_signal<bool> S0, S1;
+
+	// Gate for NAND3 in self component form
+
+	nand2 na1;
+
+	SC_CTOR(nand3_sc) : na1("NA1")         // Constructor for nand3_sc
+	{
+		na1.i[0](i[0]);
+		na1.i[1](i[1]);
+		na1.F(S0);
+
+		na1.i[0](S0);
+		na1.i[1](S0);
+		na1.F(S1);
+
+		na1.i[0](S1);
+		na1.i[1](i[2]);
+		na1.F(F);
+
+
+		sensitive << i[0] << i[1] << i[2];  // sensitivity list
+	}
+};
+
+SC_MODULE(nand5_sc)          // Declare nand5_sc sc_module
+{
+	sc_in<bool> i[5];       // Input signal ports
+	sc_out<bool> F;         // Output signal ports
+
+	sc_signal<bool> S0, S1;
+
+	// Gate for NAND2 in self component form
+	nand3 na1;
+
+	SC_CTOR(nand5_sc) : na1("NA1")         // Constructor for nand5_sc
+	{
+		na1.i[0](i[0]);
+		na1.i[1](i[1]);
+		na1.i[2](i[2]);
+		na1.F(S0);
+
+		na1.i[0](S0);
+		na1.i[1](S0);
+		na1.i[2](S0);
+		na1.F(S1);
+
+		na1.i[0](S1);
+		na1.i[1](i[3]);
+		na1.i[2](i[4]);
+		na1.F(F);
+
+
+		sensitive << i[0] << i[1] << i[2] << i[3] << i[4];  // Sensitivity list
+	}
+};
+
+/*
+________________________________________________________________________________
+
+						END NAND GATES HEADER FILE
+
+*/
