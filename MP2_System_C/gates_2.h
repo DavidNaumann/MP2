@@ -9,20 +9,20 @@ ________________________________________________________________________________
 ________________________________________________________________________________
 */
 
-SC_MODULE(and2)          // declare and2 sc_module
+SC_MODULE(and2)          // Declare and2 sc_module
 {
-	sc_in<bool> i[2];       // input signal ports
-	sc_out<bool> F;         // output signal ports
+	sc_in<bool> i[2];       // Input signal ports
+	sc_out<bool> F;         // Output signal ports
 
-	void do_and2()         // a C++ function
+	void do_and2()         // C++ function for AND2
 	{
 		F.write((i[0].read() && i[1].read()));
 	}
 
-	SC_CTOR(and2)          // constructor for and2
+	SC_CTOR(and2)          // Constructor for and2
 	{
-		SC_METHOD(do_and2);  // register do_and2 with kernel
-		sensitive << i[0] << i[1];  // sensitivity list
+		SC_METHOD(do_and2);  // Register do_and2 with kernel
+		sensitive << i[0] << i[1];  // Sensitivity list
 	}
 };
 
@@ -33,27 +33,27 @@ ________________________________________________________________________________
 ________________________________________________________________________________
 */
 
-SC_MODULE(or2)          // declare or2 sc_module
+SC_MODULE(or2)          // Declare or2 sc_module
 {
-	sc_in<bool> i[2];       // input signal ports
-	sc_out<bool> F;         // output signal ports
+	sc_in<bool> i[2];       // Input signal ports
+	sc_out<bool> F;         // Output signal ports
 
-	void do_or2()         // a C++ function
+	void do_or2()         // C++ function for OR2
 	{
 		F.write((i[0].read() || i[1].read()));
 	}
 
-	SC_CTOR(or2)          // constructor for or2
+	SC_CTOR(or2)          // Constructor for or2
 	{
-		SC_METHOD(do_or2);  // register do_or2 with kernel
-		sensitive << i[0] << i[1];  // sensitivity list
+		SC_METHOD(do_or2);  // Register do_or2 with kernel
+		sensitive << i[0] << i[1];  // Sensitivity list
 	}
 };
 
-SC_MODULE(or2_c)          // declare or2_c sc_module
+SC_MODULE(or2_c)          // Declare or2_c sc_module
 {
-	sc_in<bool> i[2];       // input signal ports
-	sc_out<bool> F;         // output signal ports
+	sc_in<bool> i[2];       // Input signal ports
+	sc_out<bool> F;         // Output signal ports
 
 	sc_signal<bool> n_i1, n_i2;
 	sc_signal<bool> S;
