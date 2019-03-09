@@ -4,7 +4,6 @@
 *.wlf
 *.dat
 *.dbs
-*.vhd
 *.psm
 *.mpf
 *.mti
@@ -12,6 +11,10 @@
 *.user
 *.vcxproj
 *.sln
+*.mti
+*.txt
+*.vcd
+
 work/_info
 work
 MP2_SYSTEM_C/MP2/MP2/MP2.vcxproj.user
@@ -19,7 +22,5 @@ MP2_SYSTEM_C/MP2/MP2.sln
 MP2_SYSTEM_C/Release
 MP2_SYSTEM_C/Debug
 MP2_SYSTEM_C/.vs
-
-
-*.mti
-*.vcd
+MP2_VHDL/html
+MP2_VHDL/Doc/MP1.docx
