@@ -23,7 +23,6 @@ SC_MODULE(encoder42)          // Declare encoder42 sc_module
 		tempF_ARR[0] = i[3] || (i[1] && !i[2]);
 		tempF_ARR[1] = i[3] || i[2];
 		F_ARR.write(tempF_ARR);
-		cout << tempF_ARR[0] << tempF_ARR[1] << endl;
 	}
 
 	SC_CTOR(encoder42)          // Constructor for encoder42
@@ -33,7 +32,7 @@ SC_MODULE(encoder42)          // Declare encoder42 sc_module
 	}
 };
 
-SC_MODULE(encoder42_c)          // Declare encoder42_c sc_module
+SC_MODULE(encoder42_b)          // Declare encoder42_b sc_module
 {
 	sc_in<bool> i[4];       // Input signal ports
 	sc_out<sc_bv<2>> F_ARR;         // Output signal ports
@@ -43,7 +42,7 @@ SC_MODULE(encoder42_c)          // Declare encoder42_c sc_module
 	int counter;
 	int peak_i;
 
-	void do_encoder42()         // C++ function for encoder42 gate
+	void do_encoder42_b()         // C++ function for encoder42_b gate
 	{
 		tempo = "";
 		peak_i = -1;
@@ -77,9 +76,9 @@ SC_MODULE(encoder42_c)          // Declare encoder42_c sc_module
 		F_ARR = tempo.c_str();
 	}
 
-	SC_CTOR(encoder42_c)       // Constructor for and3
+	SC_CTOR(encoder42_b)       // Constructor for and3
 	{
-		SC_METHOD(do_encoder42);
+		SC_METHOD(do_encoder42_b);
 		sensitive << i[0] << i[1] << i[2] << i[3];  // Sensitivity list
 	}
 };
