@@ -210,6 +210,7 @@ void dutcontrol(decoder24_b & DUT, sc_signal<sc_bv<4>> & F_ARR, sc_signal<bool> 
 
 void dutcontrol(demux14_b & DUT, sc_signal<sc_bv<4>> & F_ARR, sc_signal<bool> & F, sc_signal<bool> & E)
 {
+	DUT.E(E);
 	DUT.F_ARR(F_ARR);
 	return;
 }
