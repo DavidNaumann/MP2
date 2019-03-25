@@ -214,3 +214,19 @@ void dutcontrol(demux14_b & DUT, sc_signal<sc_bv<4>> & F_ARR, sc_signal<bool> & 
 	DUT.F_ARR(F_ARR);
 	return;
 }
+
+// Mux Devices Under Testing
+
+void dutcontrol(mux41_b & DUT, sc_signal<sc_bv<1>> & F_ARR, sc_signal<bool> & F, sc_signal<bool> & E)
+{
+	DUT.E(E);
+	DUT.F(F);
+	return;
+}
+
+void dutcontrol(mux81_b & DUT, sc_signal<sc_bv<1>> & F_ARR, sc_signal<bool> & F, sc_signal<bool> & E)
+{
+	DUT.E(E);
+	DUT.F(F);
+	return;
+}
