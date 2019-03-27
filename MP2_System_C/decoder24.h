@@ -5,10 +5,10 @@
 SC_MODULE(decoder24)          // Declare decoder24 sc_module
 {
 	sc_in<bool> i[2];       // Input signal ports
-	sc_out<sc_bv<4>> F_ARR; // Output signal ports
+	sc_out<sc_lv<4>> F_ARR; // Output signal ports
 	sc_in<bool> E;
 
-	sc_bv<4> tempF_ARR; // temporary F_ARR
+	sc_lv<4> tempF_ARR; // temporary F_ARR
 
 	void do_decoder24()         // C++ function for encoder42 gate
 	{
@@ -16,6 +16,14 @@ SC_MODULE(decoder24)          // Declare decoder24 sc_module
 		tempF_ARR[1] = (!i[0] || i[1]) || (!E);
 		tempF_ARR[2] = (i[0] || !i[1]) || (!E);
 		tempF_ARR[3] = (((!i[0] || !i[1])) || (!E));
+		if (E)
+		{
+			tempF_ARR[0] = 'Z';
+			tempF_ARR[1] = 'Z';
+			tempF_ARR[2] = 'Z';
+			tempF_ARR[3] = 'Z';
+
+		}
 		F_ARR.write(tempF_ARR);
 	}
 
@@ -29,14 +37,14 @@ SC_MODULE(decoder24)          // Declare decoder24 sc_module
 SC_MODULE(decoder24_b)          // Declare decoder24 sc_module
 {
 	sc_in<bool> i[2];       // Input signal ports
-	sc_out<sc_bv<4>> F_ARR; // Output signal ports
+	sc_out<sc_lv<4>> F_ARR; // Output signal ports
 	sc_in<bool> E;
 
 	std::string tempo; // temporary output
 
 	int sum = 0;
 
-	sc_bv<4> tempF_ARR; // temporary F_ARR
+	sc_lv<4> tempF_ARR; // temporary F_ARR
 
 	void do_decoder24_b()         // C++ function for encoder42 gate
 	{

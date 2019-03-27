@@ -14,9 +14,9 @@ ________________________________________________________________________________
 SC_MODULE(encoder42)          // Declare encoder42 sc_module
 {
 	sc_in<bool> i[4];       // Input signal ports
-	sc_out<sc_bv<2>> F_ARR; // Output signal ports
+	sc_out<sc_lv<2>> F_ARR; // Output signal ports
 	
-	sc_bv<2> tempF_ARR; // temporary F_ARR
+	sc_lv<2> tempF_ARR; // temporary F_ARR
 
 	void do_encoder42()         // C++ function for encoder42 gate
 	{
@@ -35,7 +35,7 @@ SC_MODULE(encoder42)          // Declare encoder42 sc_module
 SC_MODULE(encoder42_b)          // Declare encoder42_b sc_module
 {
 	sc_in<bool> i[4];       // Input signal ports
-	sc_out<sc_bv<2>> F_ARR;         // Output signal ports
+	sc_out<sc_lv<2>> F_ARR;         // Output signal ports
 
 	std::string tempo = "";
 	int total_inputs = 4;

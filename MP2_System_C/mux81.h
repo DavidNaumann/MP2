@@ -10,8 +10,10 @@ i[3..10] = data lines
 SC_MODULE(mux81_b)          // Declare mux81_b sc_module
 {
 	sc_in<bool> i[11];       // Input signal ports
-	sc_out<bool> F; // Output signal ports
+	sc_out<sc_lv<1>> F_ARR; // Output signal ports
 	sc_in<bool> E;
+
+	std::string temp_arr; // temporary string array
 
 	int currline = 0; // currline calculation
 
@@ -25,37 +27,38 @@ SC_MODULE(mux81_b)          // Declare mux81_b sc_module
 			switch (currline)
 			{
 			case 0:
-				F = i[3];
+				temp_arr = '0' + i[3];
 				break;
 			case 1:
-				F = i[4];
+				temp_arr = '0' + i[4];
 				break;
 			case 2:
-				F = i[5];
+				temp_arr = '0' + i[5];
 				break;
 			case 3:
-				F = i[6];
+				temp_arr = '0' + i[6];
 				break;
 			case 4:
-				F = i[7];
+				temp_arr = '0' + i[7];
 				break;
 			case 5:
-				F = i[8];
+				temp_arr = '0' + i[8];
 				break;
 			case 6:
-				F = i[9];
+				temp_arr = '0' + i[9];
 				break;
 			case 7:
-				F = i[10];
+				temp_arr = '0' + i[10];
 				break;
 			default:
-				F = 0;
+				temp_arr = '0';
 			}
 		}
 		else
 		{
-			F = 0;
+			temp_arr = 'Z';
 		}
+		F_ARR = temp_arr.c_str();
 	}
 
 	SC_CTOR(mux81_b)          // Constructor for mux81_b

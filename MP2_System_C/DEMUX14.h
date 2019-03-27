@@ -5,7 +5,7 @@
 SC_MODULE(demux14_b)          // Declare demux14 sc_module
 {
 	sc_in<bool> i[3];       // Input signal ports
-	sc_out<sc_bv<4>> F_ARR; // Output signal ports
+	sc_out<sc_lv<4>> F_ARR; // Output signal ports
 	sc_in<bool> E;
 
 	char tempo[5] = "0000"; // Temporary output
@@ -41,15 +41,21 @@ SC_MODULE(demux14_b)          // Declare demux14 sc_module
 				break;
 			}
 		}
+		else
+		{
+			tempo[0] = 'Z';
+			tempo[1] = 'Z';
+			tempo[2] = 'Z';
+			tempo[3] = 'Z';
+		}
 
 		F_ARR = tempo;
-		cout << sum << endl;
-		cout << tempo << endl;
 	}
 
 	SC_CTOR(demux14_b)          // Constructor for demux14_b
 	{
 		SC_METHOD(do_demux14_b);  // Register do_demux14_b with kernel
 		sensitive << i[0] << i[1];  // Sensitivity list
+		sensitive << E;
 	}
 };
