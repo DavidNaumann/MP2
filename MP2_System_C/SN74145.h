@@ -1,4 +1,5 @@
 #pragma once
+<<<<<<< HEAD
 
 #include <systemc.h>
 
@@ -149,3 +150,5 @@ SC_MODULE(SN74145_spc)          // Declare SN74145_b sc_module
 		sensitive << i[0] << i[1] << i[2] << i[3];  // Sensitivity list
 	}
 };
+=======
+>>>>>>> parent of cd3b2f9... Fixed decoder for correct logic function

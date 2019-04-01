@@ -12,6 +12,7 @@ SC_MODULE(decoder24)          // Declare decoder24 sc_module
 
 	void do_decoder24()         // C++ function for encoder42 gate
 	{
+<<<<<<< HEAD
 		tempF_ARR[0] = (i[0] || i[1]) || (!E);
 		tempF_ARR[1] = (!i[0] || i[1]) || (!E);
 		tempF_ARR[2] = (i[0] || !i[1]) || (!E);
@@ -24,6 +25,12 @@ SC_MODULE(decoder24)          // Declare decoder24 sc_module
 			tempF_ARR[3] = 'Z';
 
 		}
+=======
+		tempF_ARR[0] = ((!(i[0] && i[1])) || (!E));
+		tempF_ARR[1] = ((!(!(i[0]) &&  i[1])) || (!E));
+		tempF_ARR[2] = ((!(i[0] && !(i[1]))) || (!E));
+		tempF_ARR[3] = (((i[0] || i[1])) || (!E));
+>>>>>>> parent of cd3b2f9... Fixed decoder for correct logic function
 		F_ARR.write(tempF_ARR);
 	}
 
@@ -40,8 +47,6 @@ SC_MODULE(decoder24_b)          // Declare decoder24 sc_module
 	sc_out<sc_lv<4>> F_ARR; // Output signal ports
 	sc_in<bool> E;
 
-	std::string tempo; // temporary output
-
 	int sum = 0;
 
 	sc_lv<4> tempF_ARR; // temporary F_ARR
@@ -56,13 +61,20 @@ SC_MODULE(decoder24_b)          // Declare decoder24 sc_module
 			switch (sum)
 			{
 			case 2:
-				tempo = "0111";
+				F_ARR = "1110";
 				break;
 			case 1:
-				(i[0]) ? (tempo = "1101") : (tempo = "1011");
+				if (i[0])
+				{
+					F_ARR = "1101";
+				}
+				else
+				{
+					F_ARR = "1011";
+				}
 				break;
 			case 0:
-				tempo = "1110";
+				F_ARR = "0111";
 				break;
 			default:
 				F_ARR = "xxxx";
@@ -71,10 +83,13 @@ SC_MODULE(decoder24_b)          // Declare decoder24 sc_module
 		}
 		else
 		{
-			tempo = "1111";
+			F_ARR = "1111";
 		}
-
-		F_ARR = tempo.c_str();
+		tempF_ARR[0] = ((!(i[0] && i[1])) || (!E));
+		tempF_ARR[1] = ((!(!(i[0]) && i[1])) || (!E));
+		tempF_ARR[2] = ((!(i[0] && !(i[1]))) || (!E));
+		tempF_ARR[3] = (((i[0] || i[1])) || (!E));
+		F_ARR.write(tempF_ARR);
 	}
 
 	SC_CTOR(decoder24_b)          // Constructor for decoder24
