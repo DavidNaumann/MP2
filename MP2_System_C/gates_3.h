@@ -58,21 +58,21 @@ SC_MODULE(or3_c)          // Declare or3_c sc_module
 	sc_signal<bool> n_i1, n_i2, n_i3; // Negated input variables
 	sc_signal<bool> S; // Temporary output variable
 
-	not1 n1;
+	not1 n1, n2, n3, n4;
 	and3 a1;
 
-	SC_CTOR(or3_c) : n1("N1"), a1("A1")        // Constructor for or3_c
+	SC_CTOR(or3_c) : n1("N1"), n2("N2"), n3("N3"), n4("N4"), a1("A1")        // Constructor for or3_c
 	{
 		// Negations
 
 		n1.i[0](i[0]);
 		n1.F(n_i1);
 
-		n1.i[0](i[1]);
-		n1.F(n_i2);
+		n2.i[0](i[1]);
+		n2.F(n_i2);
 
-		n1.i[0](i[2]);
-		n1.F(n_i3);
+		n3.i[0](i[2]);
+		n3.F(n_i3);
 
 		// Creates AND of negated inputs
 
@@ -83,8 +83,8 @@ SC_MODULE(or3_c)          // Declare or3_c sc_module
 
 		// Negates AND to create OR gate of inputs
 
-		n1.i[0](S);
-		n1.F(F);
+		n4.i[0](S);
+		n4.F(F);
 
 
 		sensitive << i[0] << i[1] << i[2];  // Sensitivity list
@@ -100,17 +100,17 @@ SC_MODULE(or3_sc)          // Declare or3_sc sc_module
 	
 	// Gates needed for OR3 Gate
 	
-	or2 o1;
+	or2 o1, o2;
 
-	SC_CTOR(or3_sc) : o1("O1")       // Constructor for or3_sc
+	SC_CTOR(or3_sc) : o1("O1"), o2("O2")       // Constructor for or3_sc
 	{
 		o1.i[0](i[0]);
 		o1.i[1](i[1]);
 		o1.F(S);
 
-		o1.i[0](i[2]);
-		o1.i[1](S);
-		o1.F(F);
+		o2.i[0](i[2]);
+		o2.i[1](S);
+		o2.F(F);
 
 		sensitive << i[0] << i[1] << i[2];  // Sensitivity list
 	}

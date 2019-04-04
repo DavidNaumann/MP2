@@ -12,7 +12,6 @@ SC_MODULE(decoder24)          // Declare decoder24 sc_module
 
 	void do_decoder24()         // C++ function for encoder42 gate
 	{
-<<<<<<< HEAD
 		tempF_ARR[0] = (i[0] || i[1]) || (!E);
 		tempF_ARR[1] = (!i[0] || i[1]) || (!E);
 		tempF_ARR[2] = (i[0] || !i[1]) || (!E);
@@ -25,12 +24,10 @@ SC_MODULE(decoder24)          // Declare decoder24 sc_module
 			tempF_ARR[3] = 'Z';
 
 		}
-=======
 		tempF_ARR[0] = ((!(i[0] && i[1])) || (!E));
 		tempF_ARR[1] = ((!(!(i[0]) &&  i[1])) || (!E));
 		tempF_ARR[2] = ((!(i[0] && !(i[1]))) || (!E));
 		tempF_ARR[3] = (((i[0] || i[1])) || (!E));
->>>>>>> parent of cd3b2f9... Fixed decoder for correct logic function
 		F_ARR.write(tempF_ARR);
 	}
 

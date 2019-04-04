@@ -181,21 +181,21 @@ SC_MODULE(nand3_sc)          // Declare nand3_sc sc_module
 
 	// Gate for NAND3 in self component form
 
-	nand2 na1;
+	nand2 na1, na2, na3;
 
-	SC_CTOR(nand3_sc) : na1("NA1")         // Constructor for nand3_sc
+	SC_CTOR(nand3_sc) : na1("NA1"), na2("NA2"), na3("NA3")         // Constructor for nand3_sc
 	{
 		na1.i[0](i[0]);
 		na1.i[1](i[1]);
 		na1.F(S0);
 
-		na1.i[0](S0);
-		na1.i[1](S0);
-		na1.F(S1);
+		na2.i[0](S0);
+		na2.i[1](S0);
+		na2.F(S1);
 
-		na1.i[0](S1);
-		na1.i[1](i[2]);
-		na1.F(F);
+		na3.i[0](S1);
+		na3.i[1](i[2]);
+		na3.F(F);
 
 
 		sensitive << i[0] << i[1] << i[2];  // sensitivity list
@@ -210,24 +210,24 @@ SC_MODULE(nand5_sc)          // Declare nand5_sc sc_module
 	sc_signal<bool> S0, S1;
 
 	// Gate for NAND2 in self component form
-	nand3 na1;
+	nand3 na1, na2, na3;
 
-	SC_CTOR(nand5_sc) : na1("NA1")         // Constructor for nand5_sc
+	SC_CTOR(nand5_sc) : na1("NA1"), na2("NA2"), na3("NA3")        // Constructor for nand5_sc
 	{
 		na1.i[0](i[0]);
 		na1.i[1](i[1]);
 		na1.i[2](i[2]);
 		na1.F(S0);
 
-		na1.i[0](S0);
-		na1.i[1](S0);
-		na1.i[2](S0);
-		na1.F(S1);
+		na2.i[0](S0);
+		na2.i[1](S0);
+		na2.i[2](S0);
+		na2.F(S1);
 
-		na1.i[0](S1);
-		na1.i[1](i[3]);
-		na1.i[2](i[4]);
-		na1.F(F);
+		na3.i[0](S1);
+		na3.i[1](i[3]);
+		na3.i[2](i[4]);
+		na3.F(F);
 
 
 		sensitive << i[0] << i[1] << i[2] << i[3] << i[4];  // Sensitivity list

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <systemc.h>
+#include "systemc.h"
 
 /*
 i[0..1] = select lines

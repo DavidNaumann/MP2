@@ -58,18 +58,18 @@ SC_MODULE(or2_c)          // Declare or2_c sc_module
 	sc_signal<bool> n_i1, n_i2;
 	sc_signal<bool> S;
 
-	not1 n1;
+	not1 n1, n2, n3;
 	and2 a1;
 
-	SC_CTOR(or2_c): n1("N1"), a1("A1")        // Constructor for or2_c
+	SC_CTOR(or2_c): n1("N1"), n2("N2"), n3("N3"), a1("A1")        // Constructor for or2_c
 	{
 		// Negation of inputs
 
 		n1.i[0](i[0]);
 		n1.F(n_i1);
 
-		n1.i[0](i[1]);
-		n1.F(n_i2);
+		n2.i[0](i[1]);
+		n2.F(n_i2);
 
 		// Creates AND of negated inputs
 
@@ -79,8 +79,8 @@ SC_MODULE(or2_c)          // Declare or2_c sc_module
 
 		// Negates AND of negated inputs to create OR gate
 		
-		n1.i[0](S);
-		n1.F(F);
+		n3.i[0](S);
+		n3.F(F);
 
 
 		sensitive << i[0] << i[1];  // Sensitivity list

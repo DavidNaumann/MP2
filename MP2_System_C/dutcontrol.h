@@ -1,5 +1,11 @@
 #pragma once
 
+void dutcontrol(not1 & DUT, sc_signal<sc_lv<1>> & F_ARR, sc_signal<bool> & F, sc_signal<bool> & E)
+{
+	DUT.F(F);
+	return;
+}
+
 // 2 Input Gate Devices Under Testing
 
 void dutcontrol(and2 & DUT, sc_signal<sc_lv<1>> & F_ARR, sc_signal<bool> & F, sc_signal<bool> & E)

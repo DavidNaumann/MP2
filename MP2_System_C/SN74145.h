@@ -1,31 +1,6 @@
 #pragma once
-<<<<<<< HEAD
 
 #include <systemc.h>
-
-/*
-Active High = i[3..2]
-Active Low = i[0..1]
-
-1234
-LLHH 3
-LLHL 2
-LLLH 1
-LLLL 0
-LHHH 7
-LHHL 6
-LHLH 5
-LHLL 4
-HLHH F
-HLHL F
-HLLH 9
-HLLL 8
-HHHH Z
-HHHL Z
-HHLH Z
-HHLL Z
-
-*/
 
 SC_MODULE(SN74145_b)          // Declare SN74145_b sc_module
 {
@@ -150,5 +125,3 @@ SC_MODULE(SN74145_spc)          // Declare SN74145_b sc_module
 		sensitive << i[0] << i[1] << i[2] << i[3];  // Sensitivity list
 	}
 };
-=======
->>>>>>> parent of cd3b2f9... Fixed decoder for correct logic function

@@ -60,27 +60,27 @@ SC_MODULE(or5_c)          // Declare or3_c sc_module
 
 	// Gates needed for component model of OR5 minimal SOP
 	
-	not1 n1;
+	not1 n1, n2, n3, n4, n5, n6;
 	and5 a1;
 
-	SC_CTOR(or5_c) : n1("N1"), a1("A1")        // Constructor for or3_c
+	SC_CTOR(or5_c) : n1("N1"), n2("N2"), n3("N3"), n4("N4"), n5("N5"), n6("N6"), a1("A1")        // Constructor for or3_c
 	{
 		// Negations
 
 		n1.i[0](i[0]);
 		n1.F(n_i1);
 
-		n1.i[0](i[1]);
-		n1.F(n_i2);
+		n2.i[0](i[1]);
+		n2.F(n_i2);
 
-		n1.i[0](i[2]);
-		n1.F(n_i3);
+		n3.i[0](i[2]);
+		n3.F(n_i3);
 
-		n1.i[0](i[3]);
-		n1.F(n_i4);
+		n4.i[0](i[3]);
+		n4.F(n_i4);
 
-		n1.i[0](i[4]);
-		n1.F(n_i5);
+		n5.i[0](i[4]);
+		n5.F(n_i5);
 
 		// Creates AND of negated inputs
 		a1.i[0](n_i1);
@@ -91,8 +91,8 @@ SC_MODULE(or5_c)          // Declare or3_c sc_module
 		a1.F(S);
 
 		// Negates AND of negated inputs to OR Gate
-		n1.i[0](S);
-		n1.F(F);
+		n6.i[0](S);
+		n6.F(F);
 
 
 		sensitive << i[0] << i[1] << i[2] << i[3] << i[4];  // Sensitivity list
@@ -108,19 +108,19 @@ SC_MODULE(or5_sc)          // Declare or5_sc sc_module
 
 					   // Gates needed for OR5 Gate
 
-	or3 o1;
+	or3 o1, o2;
 
-	SC_CTOR(or5_sc) : o1("O1")       // Constructor for or5_sc
+	SC_CTOR(or5_sc) : o1("O1"), o2("O2")      // Constructor for or5_sc
 	{
 		o1.i[0](i[0]);
 		o1.i[1](i[1]);
 		o1.i[2](i[2]);
 		o1.F(S);
 
-		o1.i[0](i[3]);
-		o1.i[1](i[4]);
-		o1.i[2](S);
-		o1.F(F);
+		o2.i[0](i[3]);
+		o2.i[1](i[4]);
+		o2.i[2](S);
+		o2.F(F);
 
 		sensitive << i[0] << i[1] << i[2] << i[3] << i[4];  // Sensitivity list
 	}

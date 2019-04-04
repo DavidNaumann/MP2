@@ -1,6 +1,6 @@
 #pragma once
 
-#include <systemc.h>
+#include "systemc.h"
 
 SC_MODULE(demux14_b)          // Declare demux14 sc_module
 {
@@ -15,8 +15,6 @@ SC_MODULE(demux14_b)          // Declare demux14 sc_module
 
 	void do_demux14_b()         // C++ function for demux14 gate
 	{
-
-
 		if (E)
 		{
 			tempo[0] = '0';
