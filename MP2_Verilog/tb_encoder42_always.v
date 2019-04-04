@@ -1,14 +1,14 @@
 // ----------------------------
-// Current Design Names: tb_encoder42
-// File Name: tb_encoder42.v
+// Current Design Names: tb_encoder42_always
+// File Name: tb_encoder42_always.v
 // Function: Testbenches for encoder42.
 // Developer: Kenneth Naumann
 // ----------------------------
 `timescale 1ps/1ps
 
-// Test Benches for AND Gates
+// Test Benches for encoder42 Gates
 
-module tb_encoder42;
+module tb_encoder42_always;
 	
 	// Constant for inputs
 	localparam CONSTANT_INPUTS = 4;
@@ -21,7 +21,7 @@ module tb_encoder42;
 	reg [CONSTANT_INPUTS-1:0] test_i = 4'b0000; // temporary inputs
 	
 	// output
-	wire o0, o1; // output
+	wire [1:0] o; // output
 	
 	task apply_test (input [CONSTANT_INPUTS-1:0] test_i);
 		begin
@@ -34,7 +34,7 @@ module tb_encoder42;
 	endtask
 	
 	// instantiates the encoder42 gate
-	encoder42 duv (.i1(i1), .i2(i2), .i3(i3), .i4(i4), .o0(o0), .o1(o1));
+	encoder42_always duv (.i1(i1), .i2(i2), .i3(i3), .i4(i4), .o(o));
 	
 	// Procedure statement
 	initial begin
