@@ -6,8 +6,8 @@ module encoder21_c(
 
 	wire tempo_1,tempo_2; // temporary outputs
 	
-	encoder42 en1 (.i1(i1), .i2(i1), .i3(i1), .i4(i2), .o0(tempo_1),.o1(tempo_2));
+	encoder42 en1 (.i1(i1), .i2(i1), .i3(i1), .i4(i2), .o0(tempo_1), .o1(tempo_2));
 	
-	assign o = o0 & o1;
+	assign o = tempo_1 & tempo_2;
 
 endmodule

@@ -3,7 +3,7 @@ module tb_encoder21_c;
 	reg i1, i2; // inputs
 	wire o; // output
 	
-	task apply_test (input test_i1, input test_i2);
+	task apply_test (input test_i2, input test_i1);
 		begin
 			i1 = test_i1;
 			i2 = test_i2;
